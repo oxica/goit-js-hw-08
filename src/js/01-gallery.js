@@ -16,16 +16,16 @@ const createItemsMarkup = galleryItems
 
 const alleryContainerEl = document.querySelector('.gallery');
 alleryContainerEl.insertAdjacentHTML('beforeend', createItemsMarkup);
-
+let lightbox = new SimpleLightbox('.gallery a', {
+  scrollZoom: false,
+  captionDelay: 250,
+  captionsData: 'alt',
+  doubleTapZoom: 1,
+});
 alleryContainerEl.addEventListener('click', event => {
   event.preventDefault();
-  if (event.target.classList.contains('gallery__image')) {
-    let lightbox = new SimpleLightbox('.gallery a', {
-      scrollZoom: false,
-      captionDelay: 250,
-      captionsData: 'alt',
-      doubleTapZoom: 1,
-    });
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
   }
 });
 
